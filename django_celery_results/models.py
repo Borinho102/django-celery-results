@@ -127,7 +127,7 @@ class ChordCounter(models.Model):
             settings,
             "DJANGO_CELERY_RESULTS_TASK_ID_MAX_LENGTH",
             255),
-        unique=True,
+        unique=True, db_index=True,
         verbose_name=_("Group ID"),
         help_text=_("Celery ID for the Chord header group"),
     )
@@ -147,9 +147,9 @@ class ChordCounter(models.Model):
     class Meta:
         """Table information."""
 
-        indexes = [
-            models.Index(fields=['group_id']),
-        ]
+        # indexes = [
+        #     models.Index(fields=['group_id']),
+        # ]
 
     def group_result(self, app=None):
         """Return the GroupResult of self.
